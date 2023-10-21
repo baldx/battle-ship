@@ -11,9 +11,14 @@ function hit (ship) {
   return ship;
 }
 
+function isSunk(ship) {
+  if (ship.length === ship.hit) return ship.sunk = true;
+  else return ship.sunk = false;
+}
+
 const emptyShip = new Ship()
 const shipHit = new Ship();
 shipHit.sunk = true;
 
 
-export {emptyShip, shipHit, hit};
+export {emptyShip, shipHit, hit, isSunk};
