@@ -6,6 +6,13 @@ class Ship {
   }
 }
 
+class Board {
+  constructor(x = 10, y = 10){
+    this.x = x;
+    this.y = y;
+  }
+}
+
 function hit (ship) {
   ship.hit++;
   return ship;
@@ -20,5 +27,22 @@ const emptyShip = new Ship()
 const shipHit = new Ship();
 shipHit.sunk = true;
 
+const gameBoard = () => {
+  let board = [];
+  let rowCol = new Board()
 
-export {emptyShip, shipHit, hit, isSunk};
+  for (let i = 0; i < rowCol.x; i++) {
+    for (let j = 0; j < rowCol.y; j++) {
+      board.push(j);
+
+      board.forEach((element, index) => {
+        board[index] = 0;
+      })
+    }
+  }
+
+  return board;
+};
+
+
+export {emptyShip, shipHit, hit, isSunk, gameBoard};
