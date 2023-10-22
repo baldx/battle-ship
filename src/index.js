@@ -63,4 +63,14 @@ function placeShip(board, ship, row, col, direction) {
   return board;
 }
 
+function receiveAttack (board) {
+  /*
+    checks board where the ships are
+    if ship is in that coordinate
+    increase the ships hit counter
+    if the same hit is hit in a previous round
+    return error
+  */
+}
+
 export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip};
