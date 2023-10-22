@@ -28,14 +28,6 @@ const emptyShip = new Ship()
 const shipHit = new Ship();
 shipHit.sunk = true;
 
-function placeShip(ship) {
-  let length2Ship = new Ship(2);
-  let length3Ship = new Ship(3);
-  let length4Ship = new Ship(4);
-
-
-}
-
 const gameBoard = () => {
   let board = [];
   let rowCol = new Board()
@@ -51,5 +43,24 @@ const gameBoard = () => {
   }
   return board;
 };
+
+function placeShip(board, ship, row, col, direction) {
+  const { x, y } = new Board();
+
+  if (direction === 'H' && col + ship.length <= y) {
+    for (let i = 0; i < ship.length; i++) {
+      const index = (row * y) + col + i;
+      board[index] = 1;
+    }
+  } else if (direction === 'V' && row + ship.length <= x) {
+    for (let i = 0; i < ship.length; i++) {
+      const index = (row + i) * y + col;
+      board[index] = 1;
+    }
+  }
+  else return 'Invalid placement';
+
+  return board;
+}
 
 export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip};
