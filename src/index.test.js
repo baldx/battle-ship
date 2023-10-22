@@ -1,3 +1,4 @@
+import { experiments } from "webpack";
 import {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip} from "./index.js";
 
 class Ship {
@@ -82,3 +83,9 @@ it('places ship on the game board horizontally', () => {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     ])
 })
+
+it('attacks a ship', () => {
+    const board = gameBoard();
+    const newShip = new Ship(3, 0, false, 'H');
+    expect(receiveAttack(placeShip(board, newShip, 0, 6, 'H'))).toBe(newShip.hit = 1);
+});
