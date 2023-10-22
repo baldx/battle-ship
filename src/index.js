@@ -1,8 +1,9 @@
 class Ship {
-  constructor(length, hit = 0, sunk = false) {
+  constructor(length, hit = 0, sunk = false, direction = 'V') {
     this.length = length;
     this.hit = hit;
     this.sunk = sunk;
+    this.direction = direction;
   }
 }
 
@@ -27,6 +28,14 @@ const emptyShip = new Ship()
 const shipHit = new Ship();
 shipHit.sunk = true;
 
+function placeShip(ship) {
+  let length2Ship = new Ship(2);
+  let length3Ship = new Ship(3);
+  let length4Ship = new Ship(4);
+
+
+}
+
 const gameBoard = () => {
   let board = [];
   let rowCol = new Board()
@@ -40,9 +49,7 @@ const gameBoard = () => {
       })
     }
   }
-
   return board;
 };
 
-
-export {emptyShip, shipHit, hit, isSunk, gameBoard};
+export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip};
