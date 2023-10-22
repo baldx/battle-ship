@@ -1,15 +1,24 @@
-import {emptyShip, shipHit, hit, isSunk, gameBoard} from "./index.js";
+import {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip} from "./index.js";
+
+class Ship {
+    constructor(length, hit = 0, sunk = false, direction = 'V') {
+      this.length = length;
+      this.hit = hit;
+      this.sunk = sunk;
+      this.direction = direction;
+    }
+  }
 
 it('object has been called', () => {
-    expect(emptyShip).toEqual({ length: undefined, hit: 0, sunk: false })
+    expect(emptyShip).toEqual({ length: undefined, hit: 0, sunk: false, direction: 'V' })
 })
 
 it('ship has sunken', () => {
-    expect(shipHit).toEqual({ length: undefined, hit: 0, sunk: true })
+    expect(shipHit).toEqual({ length: undefined, hit: 0, sunk: true, direction: 'V' })
 })
 
 it('ship has been hit', () => {
-    expect(hit(emptyShip)).toEqual({ length: undefined, hit: 1, sunk: false })
+    expect(hit(emptyShip)).toEqual({ length: undefined, hit: 1, sunk: false, direction: 'V' })
 })
 
 it('ship is not sunken', () => {
@@ -18,7 +27,7 @@ it('ship is not sunken', () => {
 })
 
 it('ship sunk', () => {
-    const ship = {length: 3, hit: 3, sunk: true}
+    const ship = {length: 3, hit: 3, sunk: true, }
     expect(isSunk(ship)).toBe(true);
 })
 
@@ -39,12 +48,12 @@ it('creates 10x10 game board', () => {
 })
 
 it('places ship on the game board vertically', () => {
-    const ship = emptyShip;
-    emptyShip.length = 2;
-    expect(gameBoard(emptyShip)).toBe(
+    const board = gameBoard();
+    const newShip = new Ship(2, 0, false, 'V');
+    expect(placeShip(board, newShip, 0, 3, 'V')).toStrictEqual(
         [
-        0, 0, 0, 1, 0, 0, 0, 0, 0, 0, // [3]
-        0, 0, 0, 1, 0, 0, 0, 0, 0, 0, // [13]
+        0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -57,11 +66,11 @@ it('places ship on the game board vertically', () => {
 })
 
 it('places ship on the game board horizontally', () => {
-    const ship = emptyShip;
-    emptyShip.length = 3;
-    expect(gameBoard(emptyShip)).toBe(
+    const board = gameBoard();
+    const newShip = new Ship(3, 0, false, 'H');
+    expect(placeShip(board, newShip, 0, 6, 'H')).toEqual(
         [
-        0, 0, 0, 0, 0, 0, 1, 1, 1, 0, // [6, 7, 8]
+        0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
