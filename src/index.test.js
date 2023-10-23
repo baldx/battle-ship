@@ -1,5 +1,5 @@
 import { experiments } from "webpack";
-import {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip} from "./index.js";
+import {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack} from "./index.js";
 
 class Ship {
     constructor(length, hit = 0, sunk = false, direction = 'V') {
@@ -86,6 +86,21 @@ it('places ship on the game board horizontally', () => {
 
 it('attacks a ship', () => {
     const board = gameBoard();
-    const newShip = new Ship(3, 0, false, 'H');
-    expect(receiveAttack(placeShip(board, newShip, 0, 6, 'H'))).toBe(newShip.hit = 1);
+    const ship = new Ship(3, 0, false, 'H');
+    placeShip(board, ship, 0, 6, 'H');
+    let update = { board: updatedBoard, newShip }
+    update = receiveAttack(board, 0, 7)
+    expect(
+        update
+    ).toBe([
+        0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0
+      ]);
 });
