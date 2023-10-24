@@ -101,3 +101,21 @@ it('attacks a ship', () => {
         0, 0, 0, 0
       ]);
 });
+
+it('misses a ship', () => {
+    const board = gameBoard();
+    const ship = new Ship(3, 0, false, 'H');
+    placeShip(board, ship, 0, 6, 'H');
+    let  { board: updatedBoard, newShip } = receiveAttack(board, 0, 5)
+    expect(updatedBoard).toStrictEqual([
+        0, 0, 0, 0, 0, 3, 1, 1, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0
+      ]);
+});
