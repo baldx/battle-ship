@@ -88,11 +88,8 @@ it('attacks a ship', () => {
     const board = gameBoard();
     const ship = new Ship(3, 0, false, 'H');
     placeShip(board, ship, 0, 6, 'H');
-    let update = { board: updatedBoard, newShip }
-    update = receiveAttack(board, 0, 7)
-    expect(
-        update
-    ).toBe([
+    let  { board: updatedBoard, newShip } = receiveAttack(board, 0, 7)
+    expect(updatedBoard).toEqual([
         0, 0, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
