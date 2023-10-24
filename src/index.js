@@ -93,4 +93,11 @@ function receiveAttack (board, row, col, ship) {
   return {board, newShip: null}
 }
 
-export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack};
+function areShips (board) {
+  for (let cell of board) {
+    if (cell === 1) return true;
+  }
+  return false;
+}
+
+export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
