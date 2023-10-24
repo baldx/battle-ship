@@ -69,7 +69,7 @@ function receiveAttack (board, row, col, ship) {
   let index = (row * y) + col;
   if (board[index] === 1) {
     board[index] = 2;
-  }
+  } else if (board[index] === 0) board[index] = 3;
 
   const newShip = new Ship(ship)
 
@@ -89,10 +89,8 @@ function receiveAttack (board, row, col, ship) {
     
     return { board, newShip };
   } 
-
-  if (board[index] === 0) board[index] = 3;
   
-  return {board, null: null}
+  return {board, newShip: null}
 }
 
 export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack};
