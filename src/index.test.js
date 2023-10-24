@@ -1,5 +1,5 @@
 import { experiments } from "webpack";
-import {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack} from "./index.js";
+import {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips} from "./index.js";
 
 class Ship {
     constructor(length, hit = 0, sunk = false, direction = 'V') {
@@ -119,3 +119,15 @@ it('misses a ship', () => {
         0, 0, 0, 0
       ]);
 });
+
+it('theres ships', () => {
+    const board = gameBoard();
+    const ship = new Ship(3, 0, false, 'H');
+    placeShip(board, ship, 0, 6, 'H');
+    expect(areShips(board)).toBe(true)
+})
+
+it('theres no ships', () => {
+    const board = gameBoard();
+    expect(areShips(board)).toBe(false)
+})
