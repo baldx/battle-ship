@@ -100,4 +100,46 @@ function areShips (board) {
   return false;
 }
 
-export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
+class Player {
+  constructor(name, enemyBoard) {
+    this.name = name;
+    this.enemyBoard = enemyBoard;
+  }
+}
+
+function attack(row, col) {
+  if (this.enemyBoard) {
+    const result = this.enemyBoard.receiveAttack(gameBoard(), row, col);
+    return result;
+  } else 'Game not started'
+}
+
+class ComputerPlayer extends Player {
+  constructor(name, enemyBoard) {
+    super(name, enemyBoard);
+  }
+}
+
+function makeRandomAttack () {
+  if (this.enemyBoard) {
+    const row = Math.floor(Math.random() * this.enemyBoard.length);
+    const col = Math.floor(Math.random() * this.enemyBoard[0].length);
+    const result = this.enemyBoard.receiveAttack(row, col);
+    return result;
+  } else 'Game not started noob'
+}
+
+const humanPlayerBoard = gameBoard();
+const AIBoard = gameBoard();
+
+const humanPlayer = new Player("bombaclat", AIBoard);
+const AIPlayer = new ComputerPlayer('Bimbiclot', humanPlayer);
+
+const humanResult = humanPlayer.attack(0, 0);
+console.log(`Human player attacked: ${humanResult}`);
+
+const computerResult = AIPlayer.makeRandomAttack();
+console.log(`Computer player attacked: ${computerResult}`);
+
+
+// export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
