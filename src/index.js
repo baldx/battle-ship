@@ -70,6 +70,7 @@ function receiveAttack (board, row, col, ship) {
   if (board[index] === 1) {
     board[index] = 2;
   } else if (board[index] === 0) board[index] = 3;
+  else if (board[index] === 2 || board[index] === 3) return 'Already attacked'
 
   const newShip = new Ship(ship)
 
@@ -101,45 +102,56 @@ function areShips (board) {
 }
 
 class Player {
-  constructor(name, enemyBoard) {
+  constructor(name, enemyBoard, row, col) {
+    this.name = name;
+    this.enemyBoard = enemyBoard
+  }
+}
+
+class AIPlayer {
+  constructor(name = 'AI', enemyBoard) {
     this.name = name;
     this.enemyBoard = enemyBoard;
   }
 }
 
-function attack(row, col) {
-  if (this.enemyBoard) {
-    const result = this.enemyBoard.receiveAttack(gameBoard(), row, col);
-    return result;
-  } else 'Game not started'
+function generateAttackCol () {
+  let col = Math.floor(Math.random() * 11);
+  return col;
 }
 
-class ComputerPlayer extends Player {
-  constructor(name, enemyBoard) {
-    super(name, enemyBoard);
+function generateAttackRow () {
+  let row = Math.floor(Math.random() * 11);
+  return row;
+}
+
+function gameLogic (playerBoard, playerName, AIBoard) {
+
+  let isRunning = true;
+
+  const playerTest = new Player(playerName, AIBoard);
+  const playerAI = new AIPlayer('AI', playerBoard);
+
+  // playerTest.AIBoard = receiveAttack(playerBoard, 2, 2)
+  // playerTest.AIBoard = receiveAttack(playerBoard, 3, 3)
+  // playerAI.playerBoard = receiveAttack(AIBoard, 4, 4)
+
+
+  while (isRunning) {
+    for (let index in playerBoard) {
+      if (index === 1) return playerBoard;
+      else isRunning === false;
+    } 
+    
+    for (let index in AIBoard) {
+      if (index === '1') return AIBoard;
+      else isRunning === false;
+    } 
   }
+
 }
 
-function makeRandomAttack () {
-  if (this.enemyBoard) {
-    const row = Math.floor(Math.random() * this.enemyBoard.length);
-    const col = Math.floor(Math.random() * this.enemyBoard[0].length);
-    const result = this.enemyBoard.receiveAttack(row, col);
-    return result;
-  } else 'Game not started noob'
-}
-
-const humanPlayerBoard = gameBoard();
-const AIBoard = gameBoard();
-
-const humanPlayer = new Player("bombaclat", AIBoard);
-const AIPlayer = new ComputerPlayer('Bimbiclot', humanPlayer);
-
-const humanResult = humanPlayer.attack(0, 0);
-console.log(`Human player attacked: ${humanResult}`);
-
-const computerResult = AIPlayer.makeRandomAttack();
-console.log(`Computer player attacked: ${computerResult}`);
+// console.log(gameLogic(gameBoard(), 'äasdad', gameBoard()));
 
 
-// export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
+//export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
