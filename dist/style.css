@@ -14,7 +14,7 @@ h1 {
     font-size: 3em;
 }
 
-form {
+#ign {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,11 +23,11 @@ form {
     width: 30vw;
 }
 
-label {
+#ign label {
     font-size: 2.5em;
 }
 
-input {
+#ign input {
     height: 5vh;
     margin: 1em;
     font-size: 1.5em;
@@ -38,7 +38,7 @@ input {
     padding: 8px
 }
 
-button {
+form button {
     border-radius: 5px;
     border: none;
     font-size: 2em;
@@ -50,4 +50,61 @@ button {
 
 button:hover {
     background-color: aliceblue;
+}
+
+.board {
+    border: 3px solid black;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    height: 500px;
+    width: 500px;
+}
+
+.cell {
+    border: 2px solid blue;
+}
+
+#posInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boat {
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boat label {
+    font-size: 24px;
+}
+
+.boat input {
+    font-size: 24px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    outline: none;
+    padding: 8px
+}
+
+select {
+    padding: 8px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.board-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+}
+
+#AIBoard .cell {
+    border: 2px solid red;
 }
