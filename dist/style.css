@@ -61,8 +61,8 @@ button:hover {
     width: 500px;
 }
 
-.cell {
-    border: 2px solid blue;
+.player-cell {
+    border: 1px solid blue;
 }
 
 #posInput {
@@ -105,6 +105,6 @@ select {
     width: 100vw;
 }
 
-#AIBoard .cell {
-    border: 2px solid red;
+#ai-board .cell {
+    border: 1px solid red;
 }
