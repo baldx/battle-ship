@@ -174,6 +174,13 @@ const direction3 = document.querySelector('#direction1');
 
 const submitPos = document.querySelector('#submitPos');
 
+const boatLength3 = new Ship(3, 0, false, direction1.value);
+const boatLength4 = new Ship(4, 0, false, direction2.value);
+const boatLength5 = new Ship(5, 0, false, direction3.value);
+
+const playerBoard = document.querySelectorAll('.player-cell');
+
+console.log(playerBoard);
 
 /* submitBtn.addEventListener('click', (e) => {
   let player = new Player(input.value, gameBoard());
@@ -186,7 +193,10 @@ chooseShips()
 
 function chooseShips(board) {
   submitPos.addEventListener('click', (e) => {
-    placeShip(board,)
+    placeShip(board, boatLength3, posY1.value, posX1.value, direction1.value);
+    placeShip(board, boatLength4, posY2.value, posX2.value, direction2.value);
+    placeShip(board, boatLength5, posY3.value, posX3.value, direction3.value);
+
 
     e.preventDefault();
   })
