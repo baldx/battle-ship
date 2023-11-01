@@ -1,3 +1,5 @@
+import DOMStuff from "./DOM.js";
+
 class Ship {
   constructor(length, hit = 0, sunk = false, direction = 'V') {
     this.length = length;
@@ -102,7 +104,7 @@ function areShips (board) {
 }
 
 class Player {
-  constructor(name, enemyBoard, row, col) {
+  constructor(name, enemyBoard) {
     this.name = name;
     this.enemyBoard = enemyBoard
   }
@@ -148,7 +150,46 @@ function gameLogic (playerBoard, playerName, AIBoard) {
       else isRunning === false;
     } 
   }
+}
 
+
+
+
+const submitBtn = document.querySelector('#submit');
+const input = document.querySelector('#username');
+const body = document.querySelector('body');
+const board = document.querySelector('.board');
+
+const posX1 = document.querySelector('#posX1')
+const posX2 = document.querySelector('#posX2')
+const posX3 = document.querySelector('#posX3')
+
+const posY1 = document.querySelector('#posY1')
+const posY2 = document.querySelector('#posY2')
+const posY3 = document.querySelector('#posY3')
+
+const direction1 = document.querySelector('#direction1');
+const direction2 = document.querySelector('#direction1');
+const direction3 = document.querySelector('#direction1');
+
+const submitPos = document.querySelector('#submitPos');
+
+
+/* submitBtn.addEventListener('click', (e) => {
+  let player = new Player(input.value, gameBoard());
+  console.log(player);
+  body.innerHTML = ''
+  e.preventDefault();
+}); */
+
+chooseShips()
+
+function chooseShips(board) {
+  submitPos.addEventListener('click', (e) => {
+    placeShip(board,)
+
+    e.preventDefault();
+  })
 }
 
 // console.log(gameLogic(gameBoard(), 'äasdad', gameBoard()));
