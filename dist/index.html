@@ -8,75 +8,28 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <h1>Choose your ships position!</h1>
-    <h2>(It is played on a 10x10 board)</h2>
+    <h1>Welcome to battle ship</h1>
 
-    <form id="posInput">
-        <fieldset class="boat">
-            <legend>Ship length 3</legend>
-            <label for="posX">Position X: </label>
-            <input type="number" name="posX" id="posX1" required min="0" max="10">
-            <label for="posX">Position Y: </labe>
-            <input type="number" name="posY" id="posY1" required min="0" max="10">
-            <label for="direction">Direction: </label>
-            <select name="direction" id="direction1" required>
-                <option value="V">Vertical</option>
-                <option value="H">Horizontal</option>
-            </select>
-        </fieldset>
-        
-        <fieldset class="boat">
-            <legend>Ship length 4</legend>
-            <label for="posX">Position X: </label>
-            <input type="number" name="posX" id="posX2" required min="0" max="10">
-            <label for="posX">Position Y: </labe>
-            <input type="number" name="posY" id="posY2" required min="0" max="10">
-            <label for="direction">Direction: </label>
-            <select name="direction" id="direction2" required>
-                <option value="V">Vertical</option>
-                <option value="H">Horizontal</option>
-            </select>
-        </fieldset>
-
-        <fieldset class="boat">
-            <legend>Ship length 5</legend>
-            <label for="posX">Position X: </label>
-            <input type="number" name="posX" id="posX3" required min="0" max="10">
-            <label for="posX">Position Y: </labe>
-            <input type="number" name="posY" id="posY3" required min="0" max="10">
-            <label for="direction">Direction: </label>
-            <select name="direction" id="direction3" required>
-                <option value="V">Vertical</option>
-                <option value="H">Horizontal</option>
-            </select>
-        </fieldset>
-
-        <button type="submit" id="submitPos">Submit</button>
-    </form>
+    <div class="game-info">
+        <h2>Turn: <span id="game-turn"></span></h2>
+        <h2>Info: <span id="info"></span></h2>
+    </div>
 
     <div class="board-container">
         <div class="board" id="player-board">
-            <button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button><button class="player-cell"></button>
         </div>
 
         <div class="board" id="ai-board">
-            <button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button><button class="cell"></button>
         </div>
     </div>
 
 
-
-
-
-    <!-- <h1>Welcome to battle ship game. Enter your username below</h1>
-
-    <form id="ign">
-        <div class="text-input">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" min="3" max="30" placeholder="StinkyJohn420">
-        </div>
-
-        <button type="submit" id="submit">Submit</button>
-    </form> -->
+    <div class="ships-container">
+        <div class="destroyer-ship destroyer" draggable="true"></div>
+        <div class="submarine-ship submarine" draggable="true"></div>
+        <div class="cruiser-ship cruiser" draggable="true"></div>
+        <div class="battleship-ship battleship" draggable="true"></div>
+        <div class="carrier-ship carrier" draggable="true"></div>
+    </div>
 </body>
 </html>
