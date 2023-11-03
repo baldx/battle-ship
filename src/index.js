@@ -51,13 +51,15 @@ function placeShip(board, ship, row, col, direction) {
 
   if (direction === 'H' && col + ship.length <= y) {
     for (let i = 0; i < ship.length; i++) {
-      const index = (row * y) + col + i;
-      board[index] = 1;
+      const cell = board.querySelector(`[data-row="${row}"][data-col="${col + i}"]`);
+      if (cell) cell.classList.add('ship'); 
+      else return 'Invalid position'
     }
   } else if (direction === 'V' && row + ship.length <= x) {
     for (let i = 0; i < ship.length; i++) {
-      const index = (row + i) * y + col;
-      board[index] = 1;
+      const cell = board.querySelector(`[data-row="${row + i}"][data-col="${col}"]`);
+      if (cell) cell.classList.add('ship'); 
+      else return 'Invalid position';
     }
   }
   else return 'Invalid placement';
@@ -152,57 +154,31 @@ function gameLogic (playerBoard, playerName, AIBoard) {
   }
 }
 
+const createCell = (() => {
+  const playerBoard = document.querySelector('#player-board');
+  const AIBoard = document.querySelector('#ai-board');
+  const rows = 10;
+  const cols = 10;
 
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const cell = document.createElement('div');
+      cell.classList.add('player-cell');
+      cell.dataset.row = row;
+      cell.dataset.col = col;
+      playerBoard.appendChild(cell)
+    }
+  }
 
-
-const submitBtn = document.querySelector('#submit');
-const input = document.querySelector('#username');
-const body = document.querySelector('body');
-const board = document.querySelector('.board');
-
-const posX1 = document.querySelector('#posX1')
-const posX2 = document.querySelector('#posX2')
-const posX3 = document.querySelector('#posX3')
-
-const posY1 = document.querySelector('#posY1')
-const posY2 = document.querySelector('#posY2')
-const posY3 = document.querySelector('#posY3')
-
-const direction1 = document.querySelector('#direction1');
-const direction2 = document.querySelector('#direction1');
-const direction3 = document.querySelector('#direction1');
-
-const submitPos = document.querySelector('#submitPos');
-
-const boatLength3 = new Ship(3, 0, false, direction1.value);
-const boatLength4 = new Ship(4, 0, false, direction2.value);
-const boatLength5 = new Ship(5, 0, false, direction3.value);
-
-const playerBoard = document.querySelectorAll('.player-cell');
-
-console.log(playerBoard);
-
-/* submitBtn.addEventListener('click', (e) => {
-  let player = new Player(input.value, gameBoard());
-  console.log(player);
-  body.innerHTML = ''
-  e.preventDefault();
-}); */
-
-chooseShips()
-
-function chooseShips(board) {
-  submitPos.addEventListener('click', (e) => {
-    placeShip(board, boatLength3, posY1.value, posX1.value, direction1.value);
-    placeShip(board, boatLength4, posY2.value, posX2.value, direction2.value);
-    placeShip(board, boatLength5, posY3.value, posX3.value, direction3.value);
-
-
-    e.preventDefault();
-  })
-}
-
-// console.log(gameLogic(gameBoard(), 'äasdad', gameBoard()));
-
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.dataset.row = row;
+      cell.dataset.col = col;
+      AIBoard.appendChild(cell)
+    }
+  }
+})();
 
 //export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
