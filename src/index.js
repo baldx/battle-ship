@@ -154,6 +154,21 @@ function gameLogic (playerBoard, playerName, AIBoard) {
   }
 }
 
+//export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
+
+
+/*DOM move to DOM.js later*/
+
+const flipBtn = document.querySelector('#flip');
+const shipContainer = document.querySelector('.ships-container');
+let angle = 0;
+
+flipBtn.addEventListener('click', () => {
+  const ships = Array.from(shipContainer.children);
+  angle = angle === 0 ? 90 : 0;
+  ships.forEach(ship => ship.style.transform = `rotate(${angle}deg)`)
+})
+
 const createCell = (() => {
   const playerBoard = document.querySelector('#player-board');
   const AIBoard = document.querySelector('#ai-board');
@@ -180,5 +195,3 @@ const createCell = (() => {
     }
   }
 })();
-
-//export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
