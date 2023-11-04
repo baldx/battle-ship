@@ -209,19 +209,21 @@ const carrier = new Boat('carrier', 5);
 
 const ships = [destroyer, submarine, cruiser, battleship, carrier];
 
-function addShipPiece (ship) {
+function addShipPiece (user, ship, startId) {
   const allBoardBlocks = document.querySelectorAll("#ai-board div"); //gets all divs
   let randomBool = Math.random() < 0.5; // gets random bool 50/50 chance
-  let isHorizontal = randomBool;
+  let isHorizontal = user === 'Player' ? angle === 0 : randomBool;
   let randomStartIndex = Math.floor(Math.random() * 100);
 
+  let startIndex = startId ? startId : randomStartIndex;
+
   let validStart = isHorizontal
-    ? randomStartIndex <= 100 - ship.length
-      ? randomStartIndex
+    ? startIndex <= 100 - ship.length
+      ? startIndex
       : 100 - ship.length
-    : randomStartIndex <= 100 - 10 * ship.length
-    ? randomStartIndex
-    : randomStartIndex - ship.length * 10 + 10;
+    : startIndex <= 100 - 10 * ship.length
+    ? startIndex
+    : startIndex - ship.length * 10 + 10;
 
   let shipBlocks = [];
 
@@ -256,6 +258,30 @@ function addShipPiece (ship) {
     addShipPiece(ship);
   }
 }
+ships.forEach(ship => addShipPiece('AI', ship));
 
 
-ships.forEach(ship => addShipPiece(ship));
+let draggedShip;
+const optionShips = Array.from(shipContainer.children);
+
+optionShips.forEach(optionShip => optionShip.addEventListener('dragstart', dragStart))
+
+const allPlayerBlocks = document.querySelectorAll('#player-board div');
+allPlayerBlocks.forEach(playerCell => {
+  playerCell.addEventListener('dragover', dragOver);
+  playerCell.addEventListener('drop', dropShip);
+})
+
+function dragStart (e) {
+  draggedShip = e.target;
+}
+
+function dragOver (e) {
+  e.preventDefault();
+}
+
+function dropShip (e) {
+  const startId = e.target.id;
+  const ship = ships[draggedShip.id];
+  addShipPiece('Player', ship, startId)
+}
