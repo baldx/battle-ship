@@ -157,10 +157,15 @@ function gameLogic (playerBoard, playerName, AIBoard) {
 //export {emptyShip, shipHit, hit, isSunk, gameBoard, placeShip, receiveAttack, areShips};
 
 
+
+
+
 /*DOM move to DOM.js later*/
 
 const flipBtn = document.querySelector('#flip');
 const shipContainer = document.querySelector('.ships-container');
+
+
 let angle = 0;
 
 flipBtn.addEventListener('click', () => {
@@ -188,3 +193,45 @@ const createCell = (() => {
       AIBoard.appendChild(cell)
     }
 })();
+
+class Boat {
+  constructor(name, length) {
+    this.name = name;
+    this.length = length;
+  }
+}
+
+const destroyer = new Boat('destroyer', 2);
+const submarine = new Boat('submarine', 3);
+const cruiser = new Boat('cruiser', 3);
+const battleship = new Boat('battleship', 4);
+const carrier = new Boat('carrier', 5);
+
+const ships = [destroyer, submarine, cruiser, battleship, carrier];
+
+function addShipPiece (ship) {
+  const allBoardBlocks = document.querySelectorAll('#ai-board div') //gets all divs
+  let randomBool = Math.random() < 0.5; // gets random bool 50/50 chance
+  let isHorizontal = randomBool;
+  let randomStartIndex = Math.floor(Math.random() * 100);
+
+  let validStart = isHorizontal ? randomStartIndex <= 100 - ship.length ? randomStartIndex : 100 - ship.length : 
+    randomStartIndex <= 100 - 10 * ship.length ? randomStartIndex : randomStartIndex - ship.length * 10 + 10;
+
+  let shipBlocks = [];
+
+  for (let i = 0; i < ship.length; i++) {
+    if (isHorizontal) {
+      shipBlocks.push(allBoardBlocks[Number(validStart) + i])
+    } else {
+      shipBlocks.push(allBoardBlocks[Number(validStart) + i * 10]);
+    }
+  }
+
+  shipBlocks.forEach(shipBlock => {
+    shipBlock.classList.add('ship');
+    shipBlock.classList.add('taken');
+  })
+}
+
+ships.forEach(ship => addShipPiece(ship));
