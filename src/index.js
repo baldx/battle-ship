@@ -172,26 +172,19 @@ flipBtn.addEventListener('click', () => {
 const createCell = (() => {
   const playerBoard = document.querySelector('#player-board');
   const AIBoard = document.querySelector('#ai-board');
-  const rows = 10;
-  const cols = 10;
+  const width = 10;
 
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
+  for (let i = 0; i < width * width; i++) {
       const cell = document.createElement('div');
       cell.classList.add('player-cell');
-      cell.dataset.row = row;
-      cell.dataset.col = col;
+      cell.id = i;
       playerBoard.appendChild(cell)
     }
-  }
 
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
+  for (let i = 0; i < width * width; i++) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
-      cell.dataset.row = row;
-      cell.dataset.col = col;
+      cell.id = i;
       AIBoard.appendChild(cell)
     }
-  }
 })();
