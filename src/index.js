@@ -210,28 +210,52 @@ const carrier = new Boat('carrier', 5);
 const ships = [destroyer, submarine, cruiser, battleship, carrier];
 
 function addShipPiece (ship) {
-  const allBoardBlocks = document.querySelectorAll('#ai-board div') //gets all divs
+  const allBoardBlocks = document.querySelectorAll("#ai-board div"); //gets all divs
   let randomBool = Math.random() < 0.5; // gets random bool 50/50 chance
   let isHorizontal = randomBool;
   let randomStartIndex = Math.floor(Math.random() * 100);
 
-  let validStart = isHorizontal ? randomStartIndex <= 100 - ship.length ? randomStartIndex : 100 - ship.length : 
-    randomStartIndex <= 100 - 10 * ship.length ? randomStartIndex : randomStartIndex - ship.length * 10 + 10;
+  let validStart = isHorizontal
+    ? randomStartIndex <= 100 - ship.length
+      ? randomStartIndex
+      : 100 - ship.length
+    : randomStartIndex <= 100 - 10 * ship.length
+    ? randomStartIndex
+    : randomStartIndex - ship.length * 10 + 10;
 
   let shipBlocks = [];
 
   for (let i = 0; i < ship.length; i++) {
     if (isHorizontal) {
-      shipBlocks.push(allBoardBlocks[Number(validStart) + i])
+      shipBlocks.push(allBoardBlocks[Number(validStart) + i]);
     } else {
       shipBlocks.push(allBoardBlocks[Number(validStart) + i * 10]);
     }
   }
 
-  shipBlocks.forEach(shipBlock => {
-    shipBlock.classList.add('ship');
-    shipBlock.classList.add('taken');
-  })
+  let valid;
+
+  if (isHorizontal) {
+    shipBlocks.every((_shipBlock, index) => {
+      valid = shipBlocks[0].id % 10 !== 10 - (shipBlocks.length - (index + 1));
+    });
+  } else {
+    shipBlocks.every((_shipBlock, index) => {
+      valid = shipBlocks[0].id < 90 + (10 * index + 1);
+    });
+  }
+
+  const notTaken = shipBlocks.every(shipBlock => !shipBlock.classList.contains('taken'))
+
+  if (valid && notTaken) {
+    shipBlocks.forEach((shipBlock) => {
+      shipBlock.classList.add("ship");
+      shipBlock.classList.add("taken");
+    });
+  } else {
+    addShipPiece(ship);
+  }
 }
+
 
 ships.forEach(ship => addShipPiece(ship));
