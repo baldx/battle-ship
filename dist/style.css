@@ -98,3 +98,7 @@ button {
     border: 2px solid black;
     margin: 16px;
 }
+
+button:hover {
+    background-color: aquamarine;
+}
