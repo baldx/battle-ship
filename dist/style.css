@@ -102,3 +102,14 @@ button {
 button:hover {
     background-color: aquamarine;
 }
+
+.hover {
+    background-color: gray;
+}
+.boom {
+    background-color: red;
+}
+
+.empty {
+    background-color: grey;
+}
