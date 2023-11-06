@@ -106,10 +106,19 @@ button:hover {
 .hover {
     background-color: gray;
 }
+
+#ai-board .destroyer,
+#ai-board .submarine,
+#ai-board .cruiser,
+#ai-board .battleship,
+#ai-board .carrier {
+    background-color: transparent;
+}
+
 .boom {
-    background-color: red;
+    background-color: red !important; /*overwrite*/
 }
 
 .empty {
-    background-color: grey;
+    background-color: grey !important;
 }
